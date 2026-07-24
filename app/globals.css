@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  --background: #ffffff;
+  --surface: #ffffff;
+  --surface-muted: #faf7f2;
+  --foreground: #201421;
+  --foreground-muted: #5a4f56;
+  --border: #ece3e6;
+
+  /* Magenta — headings & highlights */
+  --color-magenta-50: #fdf2f7;
+  --color-magenta-100: #fbe4ef;
+  --color-magenta-200: #f6c7de;
+  --color-magenta-300: #ee9cc0;
+  --color-magenta-400: #e2669b;
+  --color-magenta-500: #cf3d7c;
+  --color-magenta-600: #b12363;
+  --color-magenta-700: #94184f;
+  --color-magenta-800: #7a1743;
+  --color-magenta-900: #5c1233;
+  --color-magenta-950: #38091f;
+
+  /* Gold — premium accents, buttons, borders */
+  --color-gold-50: #fdf9ec;
+  --color-gold-100: #faf0cd;
+  --color-gold-200: #f4dfa0;
+  --color-gold-300: #eccb6b;
+  --color-gold-400: #e3b642;
+  --color-gold-500: #d4a127;
+  --color-gold-600: #b6811e;
+  --color-gold-700: #92621b;
+  --color-gold-800: #784f1c;
+  --color-gold-900: #66431c;
+  --color-gold-950: #3a230d;
+}
+
+[data-theme="dark"] {
+  --background: #14090f;
+  --surface: #1c0f17;
+  --surface-muted: #23131c;
+  --foreground: #f7eef2;
+  --foreground-muted: #cbb7c2;
+  --border: #3a2430;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+
+  --color-magenta-50: var(--color-magenta-50);
+  --color-magenta-100: var(--color-magenta-100);
+  --color-magenta-200: var(--color-magenta-200);
+  --color-magenta-300: var(--color-magenta-300);
+  --color-magenta-400: var(--color-magenta-400);
+  --color-magenta-500: var(--color-magenta-500);
+  --color-magenta-600: var(--color-magenta-600);
+  --color-magenta-700: var(--color-magenta-700);
+  --color-magenta-800: var(--color-magenta-800);
+  --color-magenta-900: var(--color-magenta-900);
+  --color-magenta-950: var(--color-magenta-950);
+
+  --color-gold-50: var(--color-gold-50);
+  --color-gold-100: var(--color-gold-100);
+  --color-gold-200: var(--color-gold-200);
+  --color-gold-300: var(--color-gold-300);
+  --color-gold-400: var(--color-gold-400);
+  --color-gold-500: var(--color-gold-500);
+  --color-gold-600: var(--color-gold-600);
+  --color-gold-700: var(--color-gold-700);
+  --color-gold-800: var(--color-gold-800);
+  --color-gold-900: var(--color-gold-900);
+  --color-gold-950: var(--color-gold-950);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-magenta-200);
+  color: var(--color-magenta-950);
+}
+
+[data-theme="dark"] ::selection {
+  background: var(--color-magenta-800);
+  color: var(--color-magenta-50);
+}
