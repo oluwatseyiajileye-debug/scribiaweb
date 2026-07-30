@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustIndicators } from "@/components/home/TrustIndicators";
 import { FeaturedServices } from "@/components/home/FeaturedServices";
+import { BlueprintPromo } from "@/components/home/BlueprintPromo";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { TestimonialTeaser } from "@/components/home/TestimonialTeaser";
 import { CTASection } from "@/components/home/CTASection";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Hero />
       <TrustIndicators />
       <FeaturedServices />
+      <BlueprintPromo />
       <HowItWorks />
       <TestimonialTeaser />
       <CTASection />
