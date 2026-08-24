@@ -27,6 +27,7 @@ export const navLinks = [
   { label: "Research Blueprint", href: "/blueprint" },
   { label: "Get a Quote", href: "/pricing" },
   { label: "Portfolio", href: "/portfolio" },
+  { label: "Our Writers", href: "/writers" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ] as const;

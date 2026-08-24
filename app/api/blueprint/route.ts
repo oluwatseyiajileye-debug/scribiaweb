@@ -17,7 +17,19 @@ Hard rules:
 - For analysisSoftware and databases, include ONLY entries genuinely relevant to this topic and its likely data/design - do not list every option from the reference catalog by default.
 - For hypotheses, set applicable to false and leave items empty when the research design is qualitative or exploratory and hypotheses would not be appropriate; explain briefly in note.
 - For variables, use empty arrays for any variable type that does not apply (e.g. a purely qualitative study may have no independent/dependent variables at all).
-- Keep tone professional, encouraging, and grounded. Avoid exaggerated claims and avoid inventing specific citations, statistics, or named studies.`;
+- Keep tone professional, encouraging, and grounded. Avoid exaggerated claims and avoid inventing specific citations, statistics, or named studies.
+
+Seminar Report mode (when Research Type is "Seminar Report"):
+- A seminar report is a literature-based presentation on a topic, not a primary-data study. There is no fieldwork, hypotheses, or variable testing.
+- Set hypotheses.applicable to false with an empty items array, and explain in note that seminar reports are literature-based.
+- Leave variables (independent/dependent/moderating/mediating/control) as empty arrays.
+- Leave dataCollectionMethods as an empty array (or, if the seminar draws on a secondary dataset, a single "Secondary Data / Literature Review" entry).
+- Leave statisticalTests empty unless the seminar reviews and reports on statistical findings from existing literature.
+- Populate presentationOutline with 5-8 sections structuring the talk (e.g. Introduction, Background/Context, Key Concepts, Review of Related Literature, Critical Discussion, Conclusion & Recommendations), each with 2-4 talking points.
+- Populate anticipatedQuestions with 4-6 likely panel/audience questions and how to answer them well.
+- Still populate overview, difficulty, researchDesign (describe it as a literature review/expository design), objectives, researchQuestions, analysisSoftware (reference/citation tools if relevant, else empty), keywords, searchTerms, databases, challenges, timeline (preparation phases, not fieldwork), and successTips as normal.
+
+For all other research types, leave presentationOutline and anticipatedQuestions as empty arrays.`;
 
 function buildUserPrompt(input: BlueprintRequest): string {
   const lines = [`Research Topic: ${input.topic}`];

@@ -9,6 +9,7 @@ const routes = [
   "/blueprint",
   "/pricing",
   "/portfolio",
+  "/writers",
   "/testimonials",
   "/faq",
   "/contact",

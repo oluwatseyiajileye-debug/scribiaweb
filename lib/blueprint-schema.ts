@@ -47,7 +47,7 @@ export const BlueprintSchema = z.object({
         explanation: z.string(),
       })
     )
-    .min(1),
+    .describe("Empty array for literature-based work (e.g. Seminar Report) with no primary data collection."),
 
   analysisSoftware: z
     .array(
@@ -92,6 +92,24 @@ export const BlueprintSchema = z.object({
     .min(1),
 
   successTips: z.array(z.string()).min(3),
+
+  presentationOutline: z
+    .array(
+      z.object({
+        section: z.string().describe("e.g. Introduction, Background, Key Concepts, Literature Synthesis, Conclusion"),
+        talkingPoints: z.array(z.string()).describe("Key points to cover when presenting this section."),
+      })
+    )
+    .describe("Slide/talk structure for a Seminar Report. Empty array for research types that use the timeline field instead."),
+
+  anticipatedQuestions: z
+    .array(
+      z.object({
+        question: z.string().describe("A question the audience or panel is likely to ask."),
+        tip: z.string().describe("Guidance on how to answer it well."),
+      })
+    )
+    .describe("Q&A preparation for a Seminar Report presentation. Empty array for research types that don't involve a live presentation/defense."),
 });
 
 export type BlueprintResult = z.infer<typeof BlueprintSchema>;
