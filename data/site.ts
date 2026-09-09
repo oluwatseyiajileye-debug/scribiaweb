@@ -4,7 +4,7 @@ export const siteConfig = {
   tagline: "Excellent Writing, Delivered.",
   description:
     "SCRIBIA Writing Services is a Nigerian academic and professional writing consultancy supporting students, researchers, lecturers, and professionals with high-quality academic writing, research support, data analysis, and professional writing.",
-  url: "https://scribiawritingservices.com",
+  url: "https://scribiaweb.com",
   email: "scribiawritingservices@gmail.com",
   whatsappNumber: "2348123633499",
   whatsappDisplay: "0812 363 3499",
