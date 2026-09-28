@@ -58,6 +58,12 @@ function Section({
   );
 }
 
+function parseQATip(entry: string): { question: string; tip: string } {
+  const match = entry.match(/^\s*Q:\s*(.*?)\s*\|\s*Tip:\s*(.*)$/i);
+  if (match) return { question: match[1], tip: match[2] };
+  return { question: entry, tip: "" };
+}
+
 function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="flex flex-col gap-2">
@@ -128,7 +134,7 @@ function buildPlainText(input: BlueprintRequest, r: BlueprintResult): string {
       "SUGGESTED PRESENTATION OUTLINE",
       ...r.presentationOutline.flatMap((s) => [
         `- ${s.section}`,
-        ...s.talkingPoints.map((p) => `    • ${p}`),
+        ...s.talkingPoints.split("|").map((p) => `    • ${p.trim()}`),
       ]),
       ""
     );
@@ -165,11 +171,7 @@ function buildPlainText(input: BlueprintRequest, r: BlueprintResult): string {
   );
 
   if (r.anticipatedQuestions.length > 0) {
-    lines.push(
-      "ANTICIPATED QUESTIONS & ANSWER TIPS",
-      ...r.anticipatedQuestions.map((q) => `- ${q.question}: ${q.tip}`),
-      ""
-    );
+    lines.push("ANTICIPATED QUESTIONS & ANSWER TIPS", ...r.anticipatedQuestions.map((q) => `- ${q}`), "");
   }
 
   lines.push(
@@ -328,12 +330,16 @@ export function BlueprintReport({
                 <div key={s.section} className="rounded-xl border border-border p-4">
                   <span className="font-display font-semibold text-foreground">{s.section}</span>
                   <ul className="mt-2 flex flex-col gap-1.5">
-                    {s.talkingPoints.map((point, i) => (
-                      <li key={i} className="flex gap-2 text-sm leading-relaxed text-foreground-muted">
-                        <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-gold-500" />
-                        {point}
-                      </li>
-                    ))}
+                    {s.talkingPoints
+                      .split("|")
+                      .map((point) => point.trim())
+                      .filter(Boolean)
+                      .map((point, i) => (
+                        <li key={i} className="flex gap-2 text-sm leading-relaxed text-foreground-muted">
+                          <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-gold-500" />
+                          {point}
+                        </li>
+                      ))}
                   </ul>
                 </div>
               ))}
@@ -425,12 +431,15 @@ export function BlueprintReport({
         {result.anticipatedQuestions.length > 0 && (
           <Section icon={MessageCircleQuestion} title="Anticipated Questions & Answer Tips">
             <div className="flex flex-col gap-3">
-              {result.anticipatedQuestions.map((q) => (
-                <div key={q.question} className="rounded-xl border border-border p-4">
-                  <span className="font-display font-semibold text-foreground">{q.question}</span>
-                  <p className="mt-1 text-sm leading-relaxed text-foreground-muted">{q.tip}</p>
-                </div>
-              ))}
+              {result.anticipatedQuestions.map((entry, i) => {
+                const { question, tip } = parseQATip(entry);
+                return (
+                  <div key={i} className="rounded-xl border border-border p-4">
+                    <span className="font-display font-semibold text-foreground">{question}</span>
+                    {tip && <p className="mt-1 text-sm leading-relaxed text-foreground-muted">{tip}</p>}
+                  </div>
+                );
+              })}
             </div>
           </Section>
         )}
