@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Tag } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ServiceGroupSection } from "@/components/services/ServiceGroupSection";
 import { CTASection } from "@/components/home/CTASection";
 import { serviceGroups } from "@/data/services";
+import { promos } from "@/data/promos";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -12,8 +14,24 @@ export const metadata: Metadata = {
 };
 
 export default function ServicesPage() {
+  const activePromo = promos.find((p) => p.active);
+
   return (
     <>
+      {activePromo && (
+        <Link
+          href="/promos"
+          className="flex items-center justify-center gap-2 bg-magenta-900 px-4 py-3 text-center text-sm font-medium text-white transition-colors hover:bg-magenta-800"
+        >
+          <Tag className="h-4 w-4 flex-shrink-0 text-gold-400" />
+          <span>
+            {activePromo.title}: <strong className="text-gold-400">{activePromo.discountLabel}</strong> on{" "}
+            {activePromo.discountSubtext}
+          </span>
+          <ArrowRight className="h-4 w-4 flex-shrink-0" />
+        </Link>
+      )}
+
       <section className="border-b border-border bg-surface-muted">
         <Container className="flex flex-col items-center gap-6 py-16 text-center sm:py-20">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/60 bg-gold-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-magenta-700 dark:bg-gold-950/40 dark:text-gold-300">

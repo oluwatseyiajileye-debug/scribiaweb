@@ -23,6 +23,7 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Promos", href: "/promos" },
   { label: "Data Analysis", href: "/data-analysis" },
   { label: "Research Blueprint", href: "/blueprint" },
   { label: "Get a Quote", href: "/pricing" },
