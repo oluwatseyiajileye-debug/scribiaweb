@@ -12,6 +12,8 @@ export type Promo = {
   slug: string;
   active: boolean;
   badge: string;
+  /** ISO timestamp (with timezone offset) the promo ends. Powers the countdown timer. Optional - omit for an open-ended promo. */
+  endsAt?: string;
   title: string;
   discountLabel: string;
   discountSubtext: string;
@@ -29,6 +31,7 @@ export const promos: Promo[] = [
     slug: "crazy-promo",
     active: true,
     badge: "For 14 Days Only (or while slots last)",
+    endsAt: "2026-10-13T23:59:59+01:00",
     title: "SCRIBIA Crazy Promo",
     discountLabel: "50% OFF",
     discountSubtext: "Complete Undergraduate Projects (Chapters 1-5)",

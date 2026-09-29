@@ -1,6 +1,7 @@
 import { BookOpen, CalendarClock, GraduationCap, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Accordion } from "@/components/ui/Accordion";
+import { CountdownTimer } from "@/components/promos/CountdownTimer";
 import { buildWhatsAppLink } from "@/lib/whatsapp";
 import type { Promo } from "@/data/promos";
 
@@ -18,6 +19,8 @@ export function PromoSection({ promo }: { promo: Promo }) {
         </h2>
         <p className="max-w-2xl text-lg leading-relaxed text-foreground-muted">{promo.description}</p>
       </div>
+
+      {promo.endsAt && <CountdownTimer endsAt={promo.endsAt} />}
 
       <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-2 rounded-2xl bg-magenta-900 px-8 py-8 text-center text-white">
         <span className="font-display text-5xl font-bold text-gold-400 sm:text-6xl">{promo.discountLabel}</span>
